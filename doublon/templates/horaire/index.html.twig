@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les horaires du parc{% endblock %}
+
+{% block body %}
+<h1>Notre parc est ouvert aux horaires suivants, pour le bien de nos animaux.</h1>
+
+{% for horaire in horaires %}
+    {% if horaire.estferme == false %}
+        {% set MatDeb = horaire.MatinDeb is empty ? "" : horaire.MatinDeb |date('H:i') %}  
+        {% set MatFin = horaire.MatinFin is empty ? "" : horaire.MatinFin |date('H:i') %}
+        
+        {% set AMDeb = horaire.AMDeb is empty ? "" : horaire.AMDeb |date('H:i') %}
+        {% set AMFin = horaire.AMFin is empty ? "" : horaire.AMFin |date('H:i') %}
+        
+        {% if MatFin == "" and AMDeb == "" or (MatFin ==NULL and AMDeb == NULL) %}
+            <p class="text-center ">{{ horaire.jour |upper }} : {{ MatDeb }} - {{ AMFin }} </p>  
+            {% elseif AMDeb == "" or AMDeb == NULL %}
+            <p class="text-center ">{{ horaire.jour |upper }} : {{ MatDeb }} - {{ MatFin }} </p> 
+        
+        {% elseif MatDeb == "" or MatDeb == NULL %}
+            <p class="text-center ">{{ horaire.jour |upper }} : {{ AMDeb }} - {{ AMFin }} </p>
+        
+        {% else %}
+            <p class="text-center ">{{ horaire.jour |upper }} : {{ MatDeb }} - {{ MatFin }} , {{ AMDeb }} - 
+                {{ AMFin }} </p>
+        {% endif %}
+       
+             {# <p class="text-center ">{{ horaire.jour }} : {{ horaire.MatinDeb |date('H:i') }} - {{ horaire.Matinfin |date('H:i') }} , {{ horaire.AMDeb |date('H:i') }} - $HeureFin </p> #}
+    {% else %}
+        <p class="text-center ">{{ horaire.jour |upper }} : fermé </p>
+    {% endif %}
+
+
+ {% endfor %}
+
+{% endblock %}

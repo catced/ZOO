@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1 align="center">Bienvenue au zoo ARCADIA</h1>
+    <p align="justify">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en bretagne depuis 1960.</p>
+    <p align="justify">Vous trouverez au parc des animaux répartis par habitat (savane, jungle, marais).</p>
+    <p align="justify">Le personnel fait extrêmement attention à leur santé et bien-être. Chaque jour, </p>
+    <p align="justify">plusieurs vétérinaires viennent afin effectuer les contrôles sur chaque animal </p>
+    <p align="justify">avant l’ouverture du zoo afin de s’assurer que tout se passe bien.</p>
+    <div class="image-links">
+        <a href= "{{ path('animal') }}" title="Les animaux du parc">
+            <img src="{{ asset('images/animal.png') }}" alt="Animaux" wight="150" height="150">
+        </a>
+
+        <a href= "{{ path('habitat') }}" title="Les habitats de nos animaux">
+            <img src="{{ asset('images/habitat.png') }}" alt="Habitats" wight="150" height="150">
+        </a>
+
+        <a href= "{{ path('service') }}" title="Les services proposés au parc">
+            <img src="{{ asset('images/service.png') }}" alt="Services" wight="150" height="150">
+        </a>
+
+        <a href= "{{ path('horaire') }}" title="Les horaires du parc">
+            <img src="{{ asset('images/clock.png') }}" alt="Horaires" wight="150" height="150">
+        </a>
+
+        <a href= "{{ path('avis') }}" title="Vos avis sur le parc">
+            <img src="{{ asset('images/avis.png') }}" alt="Avis" wight="150" height="150">
+        </a>
+
+        <a href= "{{ path('contact') }}" title="Contactez nous">
+            <img src="{{ asset('images/contact.png') }}" alt="Contact" wight="150" height="150">
+        </a>
+    </div>
+
+{% endblock %}

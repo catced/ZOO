@@ -1,0 +1,29 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+admin:
+    path: /admin/dashboard
+    controller: App\Controller\Admin\DashboardController::index
+
+veterinaire:
+    path: /veterinaire/dashboard
+    controller: App\Controller\VeterinaireController::index
+
+user:
+    path: /user/dashboard
+    controller: App\Controller\UserController::index
+
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::login
+
+login_check:
+    path: /login_check
+    controller: App\Controller\LoginController::loginCheck
+
+redirect_after_login:
+    path: /redirect_after_login
+    controller: App\Controller\LoginController::redirectAfterLogin

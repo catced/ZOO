@@ -1,0 +1,30 @@
+
+{# templates/employe/food.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de la nourriture{% endblock %}
+
+{% block body %}
+    <h1>Gestion de la nourriture</h1>
+
+    <a href="{{ path('add_nourriture') }}">Ajouter de la nourriture</a>
+
+    <h2>Nourritures données</h2>
+    <table>
+        <tr>
+            <th>Animal</th>
+            <th>Type</th>
+            <th>Date et Heure</th>
+            <th>Quantité</th>
+        </tr>
+        {% for nourriture in nourritures %}
+            <tr>
+                <td>{{ nourriture.animal.id }}</td>
+                <td>{{ nourriture.type }}</td>
+                <td>{{ nourriture.dateHeure|date('Y-m-d H:i') }}</td>
+                <td>{{ nourriture.quantite }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

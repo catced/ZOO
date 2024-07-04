@@ -1,0 +1,104 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Employé{% endblock %}
+
+{% block body %}
+    <h1>Dashboard Employé</h1>
+
+    <h2>Avis des clients</h2>
+    {# <form method="get" action="{{ path('user_dashboard') }}">
+        <label for="show_validated">
+            <input type="checkbox" id="show_validated" name="show_validated" value="true" {% if showvalidated %}checked{% endif %}>
+            Afficher les avis validés
+        </label>
+        <button type="submit">Appliquer</button>
+    </form> #}
+
+
+
+    <form method="post" action="{{ path('validate_avis') }}">
+        <table>
+            <tr>
+                <th>Sélectionner</th>
+                <th>Pseudo</th>
+                <th>Commentaire</th>
+                <th>Valide</th>
+            </tr>
+            {% for avis in avis %}
+                <tr>
+                    <td>
+                        {% if not avis.estVisible %}
+                            <input type="checkbox" name="avis[]" value="{{ avis.id }}">
+                        {% endif %}
+                    </td>
+                    <td>{{ avis.pseudo }}</td>
+                    <td>{{ avis.commentaire }}</td>
+                    <td>{{ avis.estVisible ? 'Oui' : 'Non' }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Valider les avis sélectionnés</button>
+    </form>
+    {# <form method="post" action="{{ path('validate_avis') }}"> #}
+        {# <table>
+            <tr>
+                <th>Commentaire</th>
+                <th>Valide</th>
+                <th>Action</th>
+            </tr>
+            {% for avis in avis %}
+                <tr>
+                    <td>{{ avis.commentaire }}</td>
+                    <td>{{ avis.estvisible ? 'Oui' : 'Non' }}</td>
+                    <td>
+                        {% if not avis.estvisible  %}
+                            <a href="{{ path('validationavis', {id: avis.id}) }}">Valider</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table> #}
+        {# <table>
+            <tr>
+                <th>Sélectionner</th>
+                <th>Commentaire</th>
+                <th>Valide</th>
+            </tr>
+            {% for avis in avis %}
+                <tr>
+                    <td>
+                        {% if not avis.estvisible %}
+                            <input type="checkbox" name="avis[]" value="{{ avis.id }}">
+                        {% endif %}
+                    </td>
+                    <td>{{ avis.commentaire }}</td>
+                    <td>{{ avis.estvisible ? 'Oui' : 'Non' }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Valider les avis sélectionnés</button>
+    </form> #}
+
+    <h2>Gestion de la nourriture</h2>
+    <a href="{{ path('add_nourriture') }}">Ajouter de la nourriture</a>
+
+    <h3>Nourritures données</h3>
+    <table>
+        <tr>
+            <th>Animal</th>
+            <th>Type</th>
+            <th>Date et Heure</th>
+            <th>Quantité</th>
+        </tr>
+        {% for nourriture in nourritures %}
+            <tr>
+                {# <td>{{ animal.prenom }}</td> #}
+                <td>{{ animal.prenom }}</td>
+                <td>{{ nourriture.type }}</td>
+                <td>{{ nourriture.dateHeure|date('Y-m-d H:i') }}</td>
+                <td>{{ nourriture.quantite }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

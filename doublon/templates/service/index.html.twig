@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos services{% endblock %}
+
+{% block body%}
+    <h1>Gestion de la nourriture</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Libellé</th>
+                <th>Description</th>
+                {# <th>Photo</th> #}
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+                <tr>
+                    <td>{{ service.libelle }}</td>
+                    <td>{{ service.description }}</td>
+                    {# <td>{{ service.photo }}</td> #}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun service n'est défini.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

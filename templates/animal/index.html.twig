@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les animaux{% endblock %}
+
+{% block body%}
+    <h1>Les animaux qui vivent dans notre zoo</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Race</th>
+                <th>Habitat</th>
+                <th>Photo</th> 
+            </tr>
+        </thead> 
+        <tbody> 
+            {% for animal in animaux %}
+                <tr>
+                    <td>{{ animal.prenom }}</td>
+                    <td>{{ animal.race.race }}</td>
+                    <td>{{ animal.habitat.nom }}</td>
+                    {# <td>{{habitat.photo }}</td> #}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Nous n'avons malheureusement pas d\'animaux.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+{% endblock %}
+
