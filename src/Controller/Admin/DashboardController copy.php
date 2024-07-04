@@ -60,6 +60,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Animaux', 'fas fa-dog', Animal::class);
         yield MenuItem::linkToCrud('Races', 'fa-regular fa-heart', Race::class);
         yield MenuItem::linkToCrud('Rapport Vétérinaire', 'fa-solid fa-message', RapportVeto::class);
+        yield MenuItem::linkToRoute('Statistiques des animaux', 'fas fa-chart-line', 'admin_animal_statistics');
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         //yield MenuItem::linkToDashboard('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToLogout('Déconnexion', 'fa fa-right-from-bracket');
