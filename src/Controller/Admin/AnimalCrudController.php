@@ -23,26 +23,25 @@ class AnimalCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-    yield IdField::new('Id')->hideOnForm();
-    yield TextField::new('Code_Puce');
-    yield TextField::new('Prenom');
-    yield AssociationField::new('race');
-    yield AssociationField::new('habitat');
-  
-    // yield Field::new('image')
-    //             ->setFormType(VichImageType::class)
-    //             ->onlyOnForms();
-    // yield ImageField::new('imageName')
-    //             ->setBasePath('/images/animals')
-    //             ->onlyOnIndex();
-  
-    yield CollectionField::new('image')
-        -> setBasePath('C:\Users\Moi\Downloads')
-        -> setUploadDir('public\images\animal')
+        yield IdField::new('Id')->hideOnForm();
+        yield TextField::new('Code_Puce');
+        yield TextField::new('Prenom');
+        yield AssociationField::new('race');
+        yield AssociationField::new('habitat');
+    
+        // yield Field::new('image')
+        //             ->setFormType(VichImageType::class)
+        //             ->onlyOnForms();
+        // yield ImageField::new('imageName')
+        //             ->setBasePath('/images/animals')
+        //             ->onlyOnIndex();
+    
+        yield CollectionField::new('image')
+            -> setBasePath('C:\Users\Moi\Downloads')
+            -> setUploadDir('public\images\animal')
         //     ->'label' => 'Brochure (PDF file)',
-
-        // // unmapped means that this field is not associated to any entity property
-        // 'mapped' => false,
+    }
+        // // unmapped means that this field is not associated to any entity property    // 'mapped' => false,
 
         // // make it optional so you don't have to re-upload the PDF file
         // // every time you edit the Product details
@@ -65,7 +64,6 @@ class AnimalCrudController extends AbstractCrudController
 
 
 
-    }
  
     /*
     public function configureFields(string $pageName): iterable
