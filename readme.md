@@ -13,3 +13,7 @@ les identifiants de connexion :
                 123
   employé     : toto@gmail.com
                 123
+
+Vous trouverez égalementà la racine les différents pdf demandés.
+
+Bonne correction
