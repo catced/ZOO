@@ -1,0 +1,19 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Vétérinaire{% endblock %}
+{# creation de 3 menus afin de créer un compte rendu,de les consulter et visulaisation l'alimentation données par les employés #}
+
+{% block body %}
+    <h1>Espace Vétérinaire</h1>
+    <ul>
+        <li><a href="{{ path('veterinaire_rapportVeterinaireNew') }}">Nouveau Rapport</a></li>
+        <li><a href="{{ path('veterinaire_consultCR') }}">Consultation des rapports</a></li>
+        <li><a href="{{ path('veterinaire_alimentation') }}">Consulter l'alimentation donnée</a></li>
+        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+    </ul>
+{% endblock %}
+
+
+    
+

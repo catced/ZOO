@@ -1,0 +1,65 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation de l'alimentation{% endblock %}
+{# Liste de la nourriture données aux animaux par les employés #}
+{# Filtre pour choisir un animal #}
+{% block body %}
+    <h1>Consultation de l'alimentation</h1>
+    {% block stylesheets %}
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000; 
+            padding: 8px;
+        }
+        th {
+            background-color: skyblue;
+            text-align: center;
+        }
+        th:first-child {
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: skyblue;
+        }
+    </style>
+{% endblock %}
+
+    <form method="get" action="{{ path('veterinaire_alimentation') }}">
+        <label for="animal">Filtrer par animal:</label>
+        <select name="animal_id" id="animal">
+            <option value="">Tous les animaux</option>
+            {% for animal in animals %}
+                <option value="{{ animal.id }}" {% if selectedAnimal == animal.id %}selected{% endif %}>{{ animal.prenom }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Animal</th>
+                <th>Type de Nourriture</th>
+                <th>Quantité</th>
+                <th>Employé</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nourriture in nourritures %}
+                <tr>
+                    <td>{{ nourriture.dateHeure|date('Y-m-d H:i') }}</td>
+                    <td>{{ nourriture.animal.prenom }}</td>
+                    <td>{{ nourriture.type.libelle }}</td>
+                    <td>{{ nourriture.quantite }}</td>
+                    <td>{{ nourriture.user.username }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

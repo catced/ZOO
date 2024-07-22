@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue, {{ user.username }}!</h1>
+    <p>Votre adresse e-mail : {{ user.email }}</p>
+    <p>Rôles :</p>
+    <ul>
+        {% for role in roles %}
+            <li>{{ role }}</li>
+        {% endfor %}
+    </ul>
+    {{ dump(user) }}
+{{ dump(roles) }}
+{% endblock %}

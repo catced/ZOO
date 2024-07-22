@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter de la nourriture{% endblock %}
+
+{% block body %}
+    <h1>Nourriture des animaux</h1>
+
+   
+    {% if animals is empty %}
+        <p>Aucun animal trouvé.</p>
+    {% else %}
+        <p>Animals variable is defined and has {{ animals|length }} items.</p>
+        <form method="post">
+            <div>
+                <label for="animal_id">Animal:</label>
+                <select id="animal_id" name="animal_id" required>
+                    {% for animal in animals %}
+                        <option value="{{ animal.id }}">{{ animal.prenom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="type">Type de nourriture:</label>
+                <input type="text" id="type" name="type" required>
+            </div>
+            
+            <div>
+                <label for="dateHeure">Date et Heure:</label>
+                <input type="datetime-local" id="dateHeure" name="dateHeure" required>
+            </div>
+            
+            <div>
+                <label for="quantite">Quantité:</label>
+                <input type="number" id="quantite" name="quantite" required>
+            </div>
+
+            <button type="submit">Ajouter</button>
+    </form>
+   
+    {% endif %}
+{% endblock %}

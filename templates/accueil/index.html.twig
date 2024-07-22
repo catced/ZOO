@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1 align="center">Bienvenue au zoo ARCADIA</h1>
+
+    <div class="content-container">
+        <div class="text-content">
+            <p align="justify">Arcadia est un zoo situé en France près de la forêt de Brocéliande, en Bretagne depuis 1960.</p>
+            <p align="justify">Vous trouverez au parc des animaux répartis par habitat (savane, jungle, marais).</p>
+            <p align="justify">Le personnel fait extrêmement attention à leur santé et bien-être. Chaque jour, plusieurs vétérinaires viennent afin d'effectuer les contrôles sur chaque animal avant l’ouverture du zoo afin de s’assurer que tout se passe bien.</p>
+            <p align="justify">Un aperçu des animaux que vous retrouverez au parc.</p>
+        </div>
+        {# gestion des animaux qui défilent sur la page d'accueil #}
+        <div id="slideshow" class="slideshow-container">
+            <img src="{{ asset('images/accueil/accueil1.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 110%; display: none;">
+            <img src="{{ asset('images/accueil/accueil2.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 60%; display: none;">
+           <img src="{{ asset('images/accueil/accueil3.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 60%; display: none;">
+            <img src="{{ asset('images/accueil/accueil4.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 60%; display: none;">
+            <img src="{{ asset('images/accueil/accueil5.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 60%; display: none;">
+            <img src="{{ asset('images/accueil/accueil6.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 100%; display: none;">
+            <img src="{{ asset('images/accueil/accueil7.jpg') }}?v={{ constant('App\\Kernel::VERSION') }}" class="slideshow-image" style="width: 60%; display: none;">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentIndex = 0;
+            const images = document.querySelectorAll('#slideshow .slideshow-image');
+            const totalImages = images.length;
+
+            function showNextImage() {
+                images[currentIndex].style.display = 'none';
+                currentIndex = (currentIndex + 1) % totalImages;
+                images[currentIndex].style.display = 'block';
+            }
+
+           // Défilement des images totues les 2 sec
+            setInterval(showNextImage, 2000); 
+        });
+    </script>
+
+    <h2>Avis des visiteurs</h2>
+   
+        {% for avis in allAvis %}
+            <div>
+                <p>{{ avis.pseudo }} - {{ avis.creele|date('d/m/Y') }} - {{ avis.commentaire }}</p>
+            </div>
+        {% endfor %}
+    
+    <script>
+        document.getElementById('showAllReviews').addEventListener('change', function() {
+            const allReviews = document.getElementById('allReviews');
+            if (this.checked) {
+                allReviews.style.display = 'block';
+            } else {
+                allReviews.style.display = 'none';
+            }
+        });
+    </script>
+
+    
+{% endblock %}
+
