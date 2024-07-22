@@ -1,0 +1,70 @@
+{% extends '@EasyAdmin/page/content.html.twig' %} 
+
+
+
+{% block content %}
+    <h1>Consulter les Rapports Vétérinaire</h1>
+
+    <form method="get" action="{{ path('consult_rapport_veto') }}">
+   
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('filter_rapports_veto') }}">
+        <div class="filters">
+            <label for="animal">Animal :</label>
+            <select id="animal" name="animal">
+                <option value="">Tous</option>
+                {% for animal in animals %}
+                    <option value="{{ animal.id }}" {{ app.request.get('animal') == animal.id ? 'selected' : '' }}>{{ animal.prenom }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="veterinaire">Vétérinaire :</label>
+            <select id="veterinaire" name="veterinaire">
+                <option value="">Tous</option>
+                {% for vet in veterinaires %}
+                    <option value="{{ vet.id }}" {{ app.request.get('veterinaire') == vet.id ? 'selected' : '' }}>{{ vet.username }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="date">Date de passage :</label>
+            <input type="date" id="date" name="date" value="{{ app.request.get('date') }}">
+
+            <button type="submit">Filtrer</button>
+        </div>
+    </form>
+
+    
+    
+    <div class="containerCR">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Animal</th>
+                    <th>Vétérinaire</th>
+                    <th>État</th>
+                    <th>Détails</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for rapport in rapportsVeto %}
+                    <tr>
+                        <td>{{ rapport.datepassage|date('d/m/Y ') }}</td>
+                        <td>{{ rapport.animal.prenom }}</td> 
+                        <td>{{ rapport.veterinaire.username }}</td> 
+                        <td>{{ rapport.etat }}</td>
+                        <td>{{ rapport.detailEtatAnimal }}</td>
+                        
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Aucun rapport disponible.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+   
+   
+
+{% endblock %}

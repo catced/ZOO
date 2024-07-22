@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>{% block title %}Bienvenue{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {# <link rel="stylesheet" href="{{ asset('styles/app.css') }}"> #}
+        <link rel="stylesheet" href="{{ asset('css/personnalisation.css') }}">
+   
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {# {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %} #}
+
+        <nav >
+            <div class="image-links">
+                <a href= "{{ path('animal') }}" title="Les animaux du parc">
+                    <img src="{{ asset('images/animal.png') }}" alt="Animaux" wight="80" height="80">
+                </a>
+        
+                <a href= "{{ path('habitat') }}" title="Les habitats de nos animaux">
+                    <img src="{{ asset('images/habitat.png') }}" alt="Habitats" wight="80" height="80">
+                </a>
+        
+                <a href= "{{ path('service') }}" title="Les services proposés au parc">
+                    <img src="{{ asset('images/service.png') }}" alt="Services" wight="80" height="80">
+                </a>
+        
+                <a href= "{{ path('horaire') }}" title="Les horaires du parc">
+                    <img src="{{ asset('images/clock.png') }}" alt="Horaires" wight="80" height="80">
+                </a>
+        
+                <a href= "{{ path('avis') }}" title="Vos avis sur le parc">
+                    <img src="{{ asset('images/avis.png') }}" alt="Avis" wight="80" height="80">
+                </a>
+        
+                <a href= "{{ path('contact') }}" title="Contactez nous">
+                    <img src="{{ asset('images/contact.png') }}" alt="Contact" wight="80" height="80">
+                </a>
+
+                <a href= "{{ path('accueil') }}" title="Retour accueil">
+                    <img src="{{ asset('images/retouraccueil.png') }}" alt="Retour à l'accueil" wight="80" height="80">
+                </a>
+        
+                <a href= "{{ path('app_logout') }}" title="Déconnexion">
+                    <img src="{{ asset('images/deconnexion.png') }}" alt="Déconnexion" wight="80" height="80">
+                </a>
+            </div>
+            {# <ul>
+                class="navbar-nav"
+                <li><a href="{{ path('animal') }}">Animaux</a></li>
+                <li><a href="{{ path('habitat') }}">Habitat</a></li>
+                <li><a href="{{ path('service') }}">Service</a></li>
+                <li><a href="{{ path('horaire') }}">Horaire</a></li>
+                <li><a href="{{ path('avis') }}">Avis</a></li>
+                <li><a href="{{ path('contact') }}">Contact</a></li>
+                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+            </ul> #}
+        </nav>
+        <style>
+            .container {
+                display: flex;
+                justify-content: flex-end;
+            }
+                   
+        </style>
+        <div class="container">
+     
+            <a class="retour" type="button" value="" href="{{ path('app_login') }}">Connectez-vous </a>
+        </div>
+    </head>
+    <body>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+              
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+
+        
+    </body>
+</html>

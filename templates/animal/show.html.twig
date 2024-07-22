@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'animal{% endblock %}
+
+{% block body %}
+ 
+{# Lorsqu'un visiteur clique sur le lien voir le détail d'un animal, il accède à l'état de forme et au détail laissé par vétérinaire. #}
+    <h1>{{ animal.prenom }}</h1>
+    <p>Race : {{ animal.race.nom }}</p>
+    <p>Habitat : {{ animal.habitat.nom }}</p>
+
+    {% if etat %}
+        <p>État de forme : {{ etat }}</p>
+    {% else %}
+        <p>État de forme : Non disponible</p>
+    {% endif %}
+    {% if detailetatanimal %}
+        <p>Détail de l'état : {{ detailetatanimal }}</p>
+    {% else %}
+        <p>Détail de l'état : Non disponible</p>
+    {% endif %}
+
+    <a href="{{ path('app_animal') }}">Retour à la liste des animaux</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{# pour afficher les animaux par habitat depuis le menu Habitat en cliquant sur le lien #}
+{% block title %}Habitat: {{ habitat.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Les animaux de l'habitat {{ habitat.nom }}</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Race</th>
+                <th>Prénom</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal in animals %}
+                <tr>
+                    <td>{{ animal.race.nom }}</td>
+                    <td>{{ animal.prenom }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Pas d'animaux dans cet habitat.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
