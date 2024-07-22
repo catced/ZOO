@@ -35,7 +35,7 @@ class Animal
     private ?string $prenom = null;
 
     #[ORM\Column]
-    private ?int $consultation = 0;
+    private ?int $consultation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
